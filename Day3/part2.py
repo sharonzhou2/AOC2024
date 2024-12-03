@@ -18,9 +18,8 @@ def read_input() -> List:
     normal_str = ""
     with open("input.txt") as file:
         normal_str = file.read()
-    res = re.findall(negative_regex_exp, normal_str)
+
     negative_str = "".join([str(normal_text) for normal_text in re.findall(negative_regex_exp, normal_str)])
-    
     matches = re.findall(regex_exp, normal_str)
     negative_matches = re.findall(regex_exp, negative_str)
 
@@ -29,18 +28,13 @@ def read_input() -> List:
 
 def calculate_number_matches(matches: Tuple[str, str], negative_matches: Tuple[str, str]) -> int:
     total = sum([int(x) * int(y) for x,y in matches])
-
     negative_total = sum([int(x) * int(y) for x,y in negative_matches])
-
     return total - negative_total
-
 
 
 def main():
     matches, negative_matches = read_input()
-
     result = calculate_number_matches(matches, negative_matches)
-
     print(result)
 
 if __name__ == "__main__":
